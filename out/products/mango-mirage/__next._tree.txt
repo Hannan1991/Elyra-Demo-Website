@@ -1,6 +1,6 @@
-:HL["/_next/static/css/425cd136eb64d08e.css","style"]
+:HL["/Elyra-Demo-Website/_next/static/css/6e5095306c26820f.css","style"]
 :HL["https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap","style"]
 3:[["children",{"s":"__PAGE__","h":160}]]
 2:[["children",{"s":{"n":"slug","t":"d","k":"mango-mirage","s":[]},"h":96,"c":"$Q3"}]]
 1:[["children",{"s":"products","h":96,"c":"$Q2"}]]
-0:{"b":"QGyONfH2N9vNDOdExoQMt","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"piBIY_PdIPpfwmTj5Dt_W","t":{"t":{"s":"","h":80,"c":"$Q1"}}}

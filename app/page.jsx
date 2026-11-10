@@ -10,7 +10,7 @@ import LazyHeroScene from '../components/LazyHeroScene';
 import FruitJourney from '../components/FruitJourney';
 import SmoothScroll from '../components/SmoothScroll';
 import { useCart } from './providers';
-import { formatPrice, products } from '../data/products';
+import { assetUrl, formatPrice, products } from '../data/products';
 
 
 const benefits = [
@@ -85,7 +85,7 @@ export default function HomePage() {
               <div className="hero-note"><span>01 / DE ELYRA GLOW</span><span>LUXE · GLANS · ZELFVERTROUWEN</span></div>
             </div>
             <div className="hero-visual" aria-label="Zwevende ELYRA lipgloss in een lichte studio">
-              <div className="hero-image-well"><img src="/images/elyra-tube-model.jpg" alt="ELYRA gloss-tubes met fruitige glans" fetchPriority="high" /><div className="image-glass-label">HET<br />GLOW-<br />OBJECT</div></div>
+              <div className="hero-image-well"><img src={assetUrl('/images/elyra-tube-model.jpg')} alt="ELYRA gloss-tubes met fruitige glans" fetchPriority="high" /><div className="image-glass-label">HET<br />GLOW-<br />OBJECT</div></div>
               <div className="scene-layer scene-layer-one" aria-hidden="true">✳</div><div className="scene-layer scene-layer-two" aria-hidden="true">◌</div>
               <LazyHeroScene shade={products[activeProduct].color} />
               <span className="visual-side-note">ONTWORPEN VOOR JOUW GEVOEL</span>
@@ -98,7 +98,7 @@ export default function HomePage() {
           <div className="intro-stamp" aria-hidden="true">E<span>✳</span></div>
           <div className="intro-copy" data-reveal><SectionLabel number="01 /">OVER ELYRA</SectionLabel><h2>Gemaakt om te stralen.<br /><em>Helemaal van jou.</em></h2></div>
           <div className="intro-detail" data-reveal><p>ELYRA brengt fruitige kleur, een luxueuze finish en een moment voor jezelf samen in één gloss.</p><p>Een moderne beauty-essential die past bij jouw ritme, jouw stijl en jouw manier van stralen.</p><Link className="underlined-link" href="/collection">Ontdek ELYRA <span>↗</span></Link></div>
-          <div className="intro-visual" data-reveal><img src="/images/fruit-macro.jpg" alt="Abstracte close-up van glanzend rood fruit" loading="lazy" /><span>JOUW EIGEN<br />MANIER VAN STRALEN</span></div>
+          <div className="intro-visual" data-reveal><img src={assetUrl('/images/fruit-macro.jpg')} alt="Abstracte close-up van glanzend rood fruit" loading="lazy" /><span>JOUW EIGEN<br />MANIER VAN STRALEN</span></div>
         </section>
 
         <section className="bestsellers-section section-pad" id="bestsellers">
@@ -111,7 +111,7 @@ export default function HomePage() {
           <div className="collection-carousel" onTouchStart={(event) => setTouchStart(event.touches[0].clientX)} onTouchEnd={(event) => { if (touchStart == null) return; const delta = event.changedTouches[0].clientX - touchStart; if (Math.abs(delta) > 42) shiftProduct(delta < 0 ? 1 : -1); setTouchStart(null); }}>
             <div className="collection-track" style={{ '--active-index': activeProduct }}>
               {products.map((product, index) => <motion.div className={`collection-slide ${index === activeProduct ? 'is-active' : ''}`} key={product.slug} animate={{ opacity: index === activeProduct ? 1 : 0.58, scale: index === activeProduct ? 1 : 0.92 }} transition={{ duration: 0.6, ease: [0.2, 0.8, 0.2, 1] }}>
-                <button className="collection-object" onClick={() => setActiveProduct(index)} aria-label={`Ontdek ${product.name}`} style={{ '--shade': product.color, '--shade-light': product.light }}><span className="collection-sigil">{product.symbol}</span><img src="/images/elyra-tube-model.jpg" alt="" loading="lazy" style={{ filter: `hue-rotate(${index * 38}deg)` }} /><span className="collection-reflection" /></button>
+                <button className="collection-object" onClick={() => setActiveProduct(index)} aria-label={`Ontdek ${product.name}`} style={{ '--shade': product.color, '--shade-light': product.light }}><span className="collection-sigil">{product.symbol}</span><img src={assetUrl('/images/elyra-tube-model.jpg')} alt="" loading="lazy" style={{ filter: `hue-rotate(${index * 38}deg)` }} /><span className="collection-reflection" /></button>
                 <div className="collection-caption"><div><span className="eyebrow">0{index + 1} — {product.shade}</span><h3>{product.name}</h3><p>{product.note}</p></div><button className="round-add" onClick={() => add(product.slug)} aria-label={`Voeg ${product.name} toe aan tas`}>＋</button></div>
               </motion.div>)}
             </div>
@@ -136,7 +136,7 @@ export default function HomePage() {
         <section className="instagram-section section-pad" id="instagram">
           <div className="instagram-heading" data-reveal><div><SectionLabel number="06 /">DE WERELD VAN ELYRA</SectionLabel><h2>Voor de gloss.<br /><em>Blijf voor de glow.</em></h2></div><a className="social-handle" href="https://www.instagram.com/" target="_blank" rel="noreferrer"><span>◎</span> @ELYRA.BEAUTY <b>↗</b></a></div>
           <div className="instagram-grid">{posts.map(([eyebrow, title, art], index) => <motion.a className={`instagram-post ${art}`} key={title} href="https://www.instagram.com/" target="_blank" rel="noreferrer" aria-label={`${title}, Instagram-demo post`} initial={{ opacity: 0, y: 30, rotate: index % 2 ? 2 : -2 }} whileInView={{ opacity: 1, y: 0, rotate: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.7, delay: (index % 3) * 0.1 }} whileHover={{ y: -7, rotate: index % 2 ? 1 : -1 }}>
-            <div className="ig-art"><img src="/images/elyra-tube-model.jpg" alt="" loading="lazy" style={{ filter: `hue-rotate(${index * 42}deg)` }} /><span className="ig-art-word">{index === 0 ? 'GLOW' : index === 1 ? 'SOFT' : index === 2 ? 'DEW' : index === 3 ? 'ELYRA' : index === 4 ? 'KISS' : 'SHINE'}</span><span className="ig-art-orbit">✳</span></div>
+            <div className="ig-art"><img src={assetUrl('/images/elyra-tube-model.jpg')} alt="" loading="lazy" style={{ filter: `hue-rotate(${index * 42}deg)` }} /><span className="ig-art-word">{index === 0 ? 'GLOW' : index === 1 ? 'SOFT' : index === 2 ? 'DEW' : index === 3 ? 'ELYRA' : index === 4 ? 'KISS' : 'SHINE'}</span><span className="ig-art-orbit">✳</span></div>
             <div className="ig-post-caption"><span className="eyebrow">{eyebrow}</span><strong>{title}</strong><div><span>♡ {['2.4K','1.8K','3.1K','1.2K','2.7K','1.9K'][index]}</span><span>↗</span></div></div>
           </motion.a>)}</div>
           <p className="demo-caption">Instagram-posts zijn originele conceptvisuals voor deze ELYRA-demo, geen live feed of echte statistieken.</p>
@@ -145,7 +145,7 @@ export default function HomePage() {
         <section className="reviews-section section-pad" id="reviews"><div className="reviews-heading" data-reveal><div><SectionLabel number="07 /">GLOW-ERVARINGEN</SectionLabel><h2>Een beetje liefde<br /><em>voor je lippen.</em></h2></div><p>Voorbeeldreviews voor de demo — te vervangen door echte klantfeedback.</p></div><div className="review-grid">{reviews.map(([quote, label], index) => <motion.article className="review-card" key={quote} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ delay: index * 0.12 }}><span className="review-stars">★★★★★</span><p>{quote}</p><span className="eyebrow">{label}</span></motion.article>)}</div></section>
 
         <section className="shop-look-section">
-          <div className="shop-look-image"><img src="/images/elyra-tube-model.jpg" alt="ELYRA fruit-inspired lipgloss campagnebeeld" loading="lazy" /><div className="look-shimmer" /><button className="hotspot hotspot-one" onClick={() => add('raspberry-velvet')} aria-label="Voeg Raspberry Velvet toe"><span>＋</span></button><button className="hotspot hotspot-two" onClick={() => add('peach-nectar')} aria-label="Voeg Peach Nectar toe"><span>＋</span></button><div className="hotspot-label">THE JUICY DUO <span>↗</span></div></div>
+          <div className="shop-look-image"><img src={assetUrl('/images/elyra-tube-model.jpg')} alt="ELYRA fruit-inspired lipgloss campagnebeeld" loading="lazy" /><div className="look-shimmer" /><button className="hotspot hotspot-one" onClick={() => add('raspberry-velvet')} aria-label="Voeg Raspberry Velvet toe"><span>＋</span></button><button className="hotspot hotspot-two" onClick={() => add('peach-nectar')} aria-label="Voeg Peach Nectar toe"><span>＋</span></button><div className="hotspot-label">THE JUICY DUO <span>↗</span></div></div>
           <div className="shop-look-copy" data-reveal><SectionLabel number="08 /">SHOP DE LOOK</SectionLabel><h2>Twee glosses.<br /><em>Oneindig veel glow.</em></h2><p>Combineer, laag of draag solo. Tik op een punt in de campagne om je ELYRA-favoriet toe te voegen.</p><Link className="underlined-link" href="/collection">Ontdek de tinten <span>↗</span></Link></div>
         </section>
 

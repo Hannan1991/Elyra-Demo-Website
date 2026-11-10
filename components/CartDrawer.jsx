@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { useCart } from '../app/providers';
-import { formatPrice, products } from '../data/products';
+import { assetUrl, formatPrice, products } from '../data/products';
 
 export default function CartDrawer() {
   const { lines, subtotal, discount, shipping, total, itemCount, setQuantity, remove, add, cartOpen, setCartOpen, applyPromo, lastAdded } = useCart();
@@ -35,7 +35,7 @@ export default function CartDrawer() {
           {addedProduct && <motion.div className="added-ticket" role="status" initial={{ opacity: 0, rotateX: -38, rotateY: 12, y: 12 }} animate={{ opacity: 1, rotateX: 0, rotateY: 0, y: 0 }} transition={{ type: 'spring', damping: 18, stiffness: 180 }}><span>ELYRA · GLOWBON</span><strong>{addedProduct.name}</strong><small>{formatPrice(addedProduct.price)} · TOEGEVOEGD AAN JE TAS</small><b aria-hidden="true">✳</b></motion.div>}
           {lines.length === 0 ? <div className="drawer-empty"><span className="empty-orbit">✳</span><p>Jouw collectie begint<br />met een vleugje glans.</p><Link className="button button-dark" href="/shop" onClick={() => setCartOpen(false)}>Ontdek de collectie <span>↗</span></Link></div> : <>
             <div className="cart-lines">{lines.map(({ slug, product, quantity }) => <motion.article className="cart-line" key={slug} initial={{ opacity: 0, x: 22, scale: .96 }} animate={{ opacity: 1, x: 0, scale: 1 }} transition={{ type: 'spring', damping: 24, stiffness: 240 }}>
-              <div className="cart-product-image" style={{ '--shade': product.color, '--shade-light': product.light }}><img src="/images/elyra-tube-model.jpg" alt="" /></div>
+              <div className="cart-product-image" style={{ '--shade': product.color, '--shade-light': product.light }}><img src={assetUrl('/images/elyra-tube-model.jpg')} alt="" /></div>
               <div className="cart-product-info"><span className="eyebrow">{product.shade}</span><h3>{product.name}</h3><span className="line-price">{formatPrice(product.price)}</span><div className="quantity-control"><button aria-label={`Minder ${product.name}`} onClick={() => setQuantity(slug, quantity - 1)}>−</button><span>{quantity}</span><button aria-label={`Meer ${product.name}`} onClick={() => setQuantity(slug, quantity + 1)}>＋</button></div></div>
               <button className="remove-line" onClick={() => remove(slug)} aria-label={`${product.name} verwijderen`}>×</button>
             </motion.article>)}</div>

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { products } from '../data/products';
+import { assetUrl, products } from '../data/products';
 
 const likes = ['2.4K', '1.8K', '3.1K', '1.2K', '2.7K', '1.9K'];
 const fruitNames = ['raspberry', 'peach', 'cherry', 'lychee', 'mango', 'berry'];
@@ -77,7 +77,7 @@ export default function FruitJourney() {
             <div className="social-card-head"><span className="social-avatar">E</span><span><strong>elyra.beauty</strong><small>DE ELYRA GLOW-SELECTIE</small></span><b>···</b></div>
             <div className="social-card-art" style={{ '--shade': product.color, '--shade-light': product.light }}>
               <span className="social-art-caption">EEN BEETJE<br /><em>MEER GLOW</em></span>
-              <img src="/images/elyra-tube-model.jpg" alt={`${product.name} lipgloss conceptbeeld`} loading="lazy" style={{ filter: `hue-rotate(${index * 42}deg)` }} />
+              <img src={assetUrl('/images/elyra-tube-model.jpg')} alt={`${product.name} lipgloss conceptbeeld`} loading="lazy" style={{ filter: `hue-rotate(${index * 42}deg)` }} />
               <span className="social-art-fruit">{product.fruit}</span>
             </div>
             <div className="social-card-actions">

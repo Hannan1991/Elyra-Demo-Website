@@ -5,6 +5,7 @@ import CartDrawer from '../components/CartDrawer';
 import SiteFooter from '../components/SiteFooter';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
 export const metadata = {
   ...(siteUrl ? { metadataBase: new URL(siteUrl) } : {}),
@@ -28,7 +29,7 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
       </head>
-      <body><CartProvider><SiteHeader />{children}<SiteFooter /><CartDrawer /></CartProvider></body>
+      <body style={{ '--fruit-atlas-url': `url("${basePath}/images/elyra-fruit-atlas.png")` }}><CartProvider><SiteHeader />{children}<SiteFooter /><CartDrawer /></CartProvider></body>
     </html>
   );
 }

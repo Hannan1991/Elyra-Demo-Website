@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { useCart } from '../app/providers';
-import { formatPrice } from '../data/products';
+import { assetUrl, formatPrice } from '../data/products';
 
 const steps = ['Persoonlijk', 'Verzending', 'Betaling', 'Bevestiging'];
 const methods = ['Bancontact', 'iDEAL', 'Visa', 'Mastercard', 'PayPal', 'Apple Pay', 'Google Pay'];
@@ -44,6 +44,6 @@ export default function CheckoutFlow() {
       {error && <p className="form-error" role="alert">{error}</p>}
       {step < 3 && <div className="checkout-actions"><button className="button button-dark" type="submit">{step === 2 ? 'Bekijk bestelpreview' : 'Verder'} <span>↗</span></button>{step > 0 && <button className="back-step" type="button" onClick={() => setStep(step - 1)}>← Terug</button>}</div>}
     </motion.form></AnimatePresence><p className="secure-note">◇ Voorbeeldafrekening · geen betaalservice gekoppeld</p></div>
-    <div className="checkout-aside"><div className="checkout-items"><span className="eyebrow">JOUW ELYRA-SELECTIE</span>{lines.map(({ slug, product, quantity }) => <div className="checkout-item" key={slug}><div className="checkout-thumb" style={{ '--shade': product.color }}><img src="/images/elyra-tube-model.jpg" alt="" /></div><span>{product.name}<small>Aantal {quantity} · {product.shade}</small></span><strong>{formatPrice(product.price * quantity)}</strong></div>)}</div><div className="checkout-totals"><div><span>Subtotaal</span><span>{formatPrice(subtotal)}</span></div><div><span>Korting</span><span>− {formatPrice(discount)}</span></div><div><span>Verzending</span><span>{shipping ? formatPrice(shipping) : 'Gratis'}</span></div><div><span>BTW inbegrepen · indicatief</span><span>{formatPrice(vat)}</span></div><div className="summary-total"><strong>Totaal</strong><strong>{formatPrice(total)}</strong></div></div><p className="checkout-demo-note">Alle bedragen, betaalmethoden en verzendopties zijn voorbeelden. Bancontact, iDEAL, kaarten, PayPal, Apple Pay en Google Pay zijn niet gekoppeld.</p></div></div>
+    <div className="checkout-aside"><div className="checkout-items"><span className="eyebrow">JOUW ELYRA-SELECTIE</span>{lines.map(({ slug, product, quantity }) => <div className="checkout-item" key={slug}><div className="checkout-thumb" style={{ '--shade': product.color }}><img src={assetUrl('/images/elyra-tube-model.jpg')} alt="" /></div><span>{product.name}<small>Aantal {quantity} · {product.shade}</small></span><strong>{formatPrice(product.price * quantity)}</strong></div>)}</div><div className="checkout-totals"><div><span>Subtotaal</span><span>{formatPrice(subtotal)}</span></div><div><span>Korting</span><span>− {formatPrice(discount)}</span></div><div><span>Verzending</span><span>{shipping ? formatPrice(shipping) : 'Gratis'}</span></div><div><span>BTW inbegrepen · indicatief</span><span>{formatPrice(vat)}</span></div><div className="summary-total"><strong>Totaal</strong><strong>{formatPrice(total)}</strong></div></div><p className="checkout-demo-note">Alle bedragen, betaalmethoden en verzendopties zijn voorbeelden. Bancontact, iDEAL, kaarten, PayPal, Apple Pay en Google Pay zijn niet gekoppeld.</p></div></div>
   </main>;
 }

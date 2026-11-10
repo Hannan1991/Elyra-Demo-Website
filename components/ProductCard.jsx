@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'motion/react';
 import { useCart } from '../app/providers';
-import { formatPrice } from '../data/products';
+import { assetUrl, formatPrice } from '../data/products';
 
 export default function ProductCard({ product, index = 0, compact = false }) {
   const { add } = useCart();
@@ -12,7 +12,7 @@ export default function ProductCard({ product, index = 0, compact = false }) {
       <Link href={`/products/${product.slug}`} className="product-visual" aria-label={`Bekijk ${product.name}`}>
         <span className="product-aura" />
         <span className="product-fruit" aria-hidden="true">{product.symbol}</span>
-        <img src="/images/elyra-tube-model.jpg" alt="" loading="lazy" style={{ filter: `hue-rotate(${index * 38}deg) saturate(0.92)` }} />
+        <img src={assetUrl('/images/elyra-tube-model.jpg')} alt="" loading="lazy" style={{ filter: `hue-rotate(${index * 38}deg) saturate(0.92)` }} />
         <span className="product-view-label">BEKIJK DE TINT <span>↗</span></span>
       </Link>
       <div className="product-card-info"><div><span className="eyebrow">{product.shade}</span><h3>{product.name}</h3><p>{product.note}</p></div><span className="product-price">{formatPrice(product.price)}</span></div>

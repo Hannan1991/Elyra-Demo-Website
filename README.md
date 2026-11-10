@@ -29,7 +29,9 @@ Open daarna `http://localhost:3000`. Voor een statische GitHub Pages-build:
 npm run build
 ```
 
-Next.js exporteert de statische site naar `out/`. Publiceer die map als GitHub Pages build artifact of via een eigen GitHub Actions-workflow. `next.config.mjs` staat al op static export.
+Next.js exporteert de statische site naar `out/`. De workflow in `.github/workflows/deploy.yml` bouwt en publiceert de site automatisch bij een push naar `main`. Voor dit project is het adres `https://hannan1991.github.io/Elyra-Demo-Website/`.
+
+Eenmalige instelling op GitHub: open **Settings → Pages** van de repository en kies bij **Build and deployment → Source** voor **GitHub Actions**. Bij een gratis persoonlijk account moet de repository openbaar zijn voor GitHub Pages. Controleer daarna **Actions**; zodra de publicatieworkflow groen is, opent de link hierboven de site. De workflow bouwt met het juiste `/Elyra-Demo-Website`-pad, zodat navigatie en afbeeldingen op de projectsite laden.
 
 ## Routes / sitemap
 

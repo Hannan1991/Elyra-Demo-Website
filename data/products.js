@@ -8,3 +8,4 @@ export const products = [
 ];
 
 export const formatPrice = (value) => new Intl.NumberFormat('nl-BE', { style: 'currency', currency: 'EUR' }).format(value);
+export const assetUrl = (path) => `${process.env.NEXT_PUBLIC_BASE_PATH || ''}${path}`;
